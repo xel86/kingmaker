@@ -1,6 +1,8 @@
 #pragma once 
 
 #include <assert.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 //comment #define DEBUG to turn off assertion debugging
 #define DEBUG

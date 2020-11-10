@@ -31,7 +31,7 @@ struct BOARD_HISTORY {
     unsigned castleAllowed;
     unsigned enPassant;
     unsigned fiftyMove;
-    U64 posKey;
+    U64 boardState;
 };
 
 struct BOARD {
@@ -45,9 +45,11 @@ struct BOARD {
     unsigned fiftyMove; //if fifty moves have occured with no captures, draw game
     unsigned ply;
     unsigned plyCount; //total half moves played
-    unsigned castleAllowed;
+    unsigned castleState;
 
-    U64 posKey;
+    //state of the board represented by the XOR's of different hash keys for 
+    //pieces, white/black move, and castle state for each square
+    U64 boardState;
     
     unsigned pieceNum[13];
     unsigned nonpawnPieces[3];
@@ -71,8 +73,12 @@ extern int Sq120ToSq64[BRD_SQ_NUM];
 extern int Sq64ToSq120[64];
 extern U64 SetMask[64];
 extern U64 ClearMask[64];
+extern U64 PieceKeys[13][120];
+extern U64 SideKey;
+extern U64 CastleKeys[16];
 
 extern void AllInit();
 extern void printBitBoard(U64 bb);
 extern int popBit(U64 *bb);
 extern int countBits(U64 bb);
+extern U64 generateBoardState(const BOARD *bb);
