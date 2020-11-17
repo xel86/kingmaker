@@ -5,5 +5,9 @@
 
 int main(){
     AllInit();
+    BOARD board[1];
+
+    parseFEN(ORIGIN_FEN, board);
+    printBoard(board);
     return 0;
 }

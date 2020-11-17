@@ -8,7 +8,7 @@ U64 generateBoardState(const BOARD *bb){
 
     for(sq = 0; sq < BRD_SQ_NUM; ++sq){
         piece = bb->pieces[sq];
-        if(piece != NO_SQ && piece != EMPTY){
+        if(piece != NO_SQ && piece != EMPTY && piece != OFFBOARD){
             ASSERT(piece >= wP && piece <= bK);
             stateKey ^= PieceKeys[piece][sq];
         }

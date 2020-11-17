@@ -5,6 +5,7 @@ typedef unsigned long long U64;
 #define NAME "KINGMAKER 1.0"
 #define BRD_SQ_NUM 120
 #define MAXMOVES 2048
+#define ORIGIN_FEN "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 
 enum PieceType { EMPTY, wP, wN, wB, wR, wQ, wK, bP, bN, bB, bR, bQ, bK };
 enum File : int { FILE_A, FILE_B, FILE_C, FILE_D, FILE_E, FILE_F, FILE_G, FILE_H, FILE_NONE };
@@ -77,6 +78,11 @@ extern U64 ClearMask[64];
 extern U64 PieceKeys[13][120];
 extern U64 SideKey;
 extern U64 CastleKeys[16];
+extern char PieceChar[];
+extern char SideChar[];
+extern char RankChar[];
+extern char FileChar[];
+
 
 extern void AllInit();
 extern void printBitBoard(U64 bb);
@@ -84,3 +90,5 @@ extern int popBit(U64 *bb);
 extern int countBits(U64 bb);
 extern U64 generateBoardState(const BOARD *bb);
 extern void ResetBoard(BOARD *bb);
+extern int parseFEN(char *fen, BOARD *bb);
+extern void printBoard(const BOARD *bb);
